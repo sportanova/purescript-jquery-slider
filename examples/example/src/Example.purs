@@ -8,8 +8,14 @@ import Debug.Trace
 
 main = do
   sliderEl <- select "#slider"
-  slider <- initSlider sliderEl 1 500 250 "horizontal" "min" printValue
+  slider <- initSlider sliderEl sliderConfig
   getValue slider
 
-printValue :: forall a. JQueryEvent -> Ui -> Eff a Unit
-printValue jqEvent obj = trace (show obj.value) \_ -> return unit
+sliderConfig :: SliderConfig
+sliderConfig = {
+  min: 1,
+  max: 500,
+  value: 250,
+  orientation: "horizontal",
+  range: "min"
+}

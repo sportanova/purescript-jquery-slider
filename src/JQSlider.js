@@ -1,15 +1,14 @@
 // module JQSlider
 
-exports.initSliderImpl = function($slider, min, max, value, orientation, range, changeFn) {
+exports.initSliderImpl = function($slider, config) {
   return function() {
     if ($slider.length > 0) {
       return $slider.slider({
-        min: min,
-        max: max,
-        value: value,
-        orientation: orientation,
-        range: range,
-        change: changeFn
+        min: config.min,
+        max: config.max,
+        value: config.value,
+        orientation: config.orientation,
+        range: config.range
       });
     }
   }
@@ -23,10 +22,26 @@ exports.onChangeImpl = function ($slider, fn) {
   };
 };
 
+exports.onSlideImpl = function ($slider, fn) {
+  return function () {
+    return $slider.on("slide", function (e, obj) {
+      fn({ event: e, ui: obj })();
+    });
+  };
+};
+
 exports.getValueImpl = function($slider) {
   return function() {
     if ($slider.length > 0) {
       return $slider.slider( "option", "value" );
+    }
+  }
+}
+
+exports.setValueImpl = function($slider, value) {
+  return function() {
+    if ($slider.length > 0) {
+      return $slider.slider( "option", "value", value );
     }
   }
 }

@@ -5,5 +5,6 @@ No documentation yet, but checkout the examples - there's one for vanilla puresc
 
 
 # for development:
-to build the halogen example do: `pulp browserify --main Example -I example/ --to example/example.js`
-to build the halogen example do: `pulp browserify --main HalogenExample -I halogenExample/ --to halogenExample/example.js`
+to build the halogen example do: `pulp browserify --main HalogenExample -I examples/halogenExample/src/ --to examples/halogenExample/example.js`
+
+to build the vanilla purescript example do: `pulp browserify --main Example -I examples/example/src --to examples/example/example.js`
